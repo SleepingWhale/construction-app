@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import queryString from 'query-string';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import debounce from 'lodash.debounce';
@@ -7,6 +8,18 @@ import debounce from 'lodash.debounce';
 const controller = new AbortController();
 
 export class InfinityLoadingContainer extends PureComponent {
+  static propTypes = {
+    apiUrl: PropTypes.string.isRequired,
+    searchInput: PropTypes.string,
+    selectedFilters: PropTypes.arrayOf(PropTypes.string),
+    children: PropTypes.func.isRequired,
+  };
+
+  static defaultProps = {
+    searchInput: '',
+    selectedFilters: [],
+  };
+
   state = {
     data: [],
     page: 0,
@@ -41,7 +54,7 @@ export class InfinityLoadingContainer extends PureComponent {
     const queryParams = queryString.stringify({
       search: searchInput,
       filters: selectedFilters,
-      count: 10,
+      count: 15,
       page: nextPage,
     }, { arrayFormat: 'bracket'});
 

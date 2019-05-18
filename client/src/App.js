@@ -19,6 +19,12 @@ class App extends Component {
     });
   };
 
+  clearInput = () => {
+    this.setState({
+      searchInput: '',
+    });
+  };
+
   onFiltersChange = (selectedFilters) => {
     this.setState({
       selectedFilters,
@@ -32,16 +38,21 @@ class App extends Component {
       <div className="container py-3">
         <div className="form-group">
           <label htmlFor="searchInput">Search for company</label>
-          <input
-            type="text"
-            className="form-control rounded-0"
-            id="searchInput"
-            placeholder="Start typing..."
-            onChange={this.onInputChange}
-            value={searchInput}
-            autoComplete="off"
-            maxLength={200}
-          />
+          <div className="input-group">
+            <input
+              type="text"
+              className="form-control rounded-0"
+              id="searchInput"
+              placeholder="Start typing..."
+              onChange={this.onInputChange}
+              value={searchInput}
+              autoComplete="off"
+              maxLength={200}
+            />
+            <div className="input-group-append">
+              <button className="input-group-text rounded-0" onClick={this.clearInput}>X</button>
+            </div>
+          </div>
         </div>
         <div className="form-group">
           <FiltersComponent filters={FILTERS_STUB} onChange={this.onFiltersChange} />

@@ -31,8 +31,10 @@ export class FiltersComponent extends Component {
         {
           filters.map((f) => (
             <div className="form-check form-check-inline" key={f}>
-              <input type="checkbox" className="form-check-input" id={f} name={f} onChange={this.onInputChange}/>
-              <label className="form-check-label" htmlFor={f}>{f}</label>
+              <span className="badge badge-info p-2">
+                <input type="checkbox" className="form-check-input" id={f} name={f} onChange={this.onInputChange}/>
+                <label className="form-check-label" htmlFor={f}>{f}</label>
+              </span>
             </div>
           ))
         }
