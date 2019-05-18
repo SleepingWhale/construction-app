@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import queryString from 'query-string';
 import './App.css';
-import { FiltersComponent } from  './components';
+import { FiltersComponent, CompaniesTable } from  './components';
 
 const FILTERS_STUB = ["Excavation", "Plumbing", "Electrical"];
 const controller = new AbortController();
@@ -83,38 +83,9 @@ class App extends Component {
               maxLength={200}
             />
           </div>
-          <FiltersComponent filters={FILTERS_STUB} onChange={this.onFiltersChange}/>
-          <table className="table">
-            <thead>
-            <tr>
-              <th scope="col"/>
-              <th scope="col">Company name</th>
-              <th scope="col">City</th>
-              <th scope="col">Specialty</th>
-            </tr>
-            </thead>
-            <tbody>
-            {
-              companies.map(({
-                id, picture, companyName, city, specialty,
-              }) => (
-                <tr key={id}>
-                  <th scope="row">
-                    <img src={picture} alt={companyName} />
-                  </th>
-                  <td>{companyName}</td>
-                  <td>{city}</td>
-                  <td>
-                    {
-                      specialty.map((s, i) => (<div key={i}>{s}</div>))
-                    }
-                  </td>
-                </tr>
-              ))
-            }
-            </tbody>
-          </table>
         </form>
+        <FiltersComponent filters={FILTERS_STUB} onChange={this.onFiltersChange}/>
+        <CompaniesTable companies={companies} />
       </div>
     );
   }
