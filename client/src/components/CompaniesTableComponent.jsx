@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-export const CompaniesTable = ({ companies }) => {
+export const CompaniesTableComponent = ({ companies }) => {
   return (
     <table className="table">
       <thead>
@@ -38,7 +38,7 @@ export const CompaniesTable = ({ companies }) => {
   );
 };
 
-CompaniesTable.propTypes = {
+CompaniesTableComponent.propTypes = {
   companies: PropTypes.arrayOf(PropTypes.shape(
     {
       id: PropTypes.string,
@@ -50,6 +50,6 @@ CompaniesTable.propTypes = {
   ))
 };
 
-CompaniesTable.defaultProps = {
+CompaniesTableComponent.defaultProps = {
   companies: [],
 };

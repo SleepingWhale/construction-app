@@ -3,7 +3,6 @@ import 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only';
 import 'whatwg-fetch';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 
 

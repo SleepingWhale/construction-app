@@ -1,2 +1,2 @@
 export { FiltersComponent } from './FiltersComponent';
-export { CompaniesTable } from './CompaniesTable';
+export { CompaniesTableComponent } from './CompaniesTableComponent';

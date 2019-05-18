@@ -30,6 +30,6 @@ exports.getCompanies = function getCompanies({ search, filters, page, count }) {
     pages: Math.ceil(result.length / count),
     search,
     filters,
-    companies: result.slice(startIndex, endIndex),
+    data: result.slice(startIndex, endIndex),
   };
 };
