@@ -3,12 +3,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-export const CompaniesTableComponent = ({ companies }) => {
+export const CompaniesTableComponent = ({ companies, hits }) => {
   return (
     <table className="table">
       <thead>
       <tr>
-        <th scope="col"/>
+        <th scope="col">{`Found: ${hits}`}</th>
         <th scope="col">Company name</th>
         <th scope="col">City</th>
         <th scope="col">Specialty</th>
@@ -45,7 +45,8 @@ CompaniesTableComponent.propTypes = {
       picture: PropTypes.string,
       companyName: PropTypes.string,
       city: PropTypes.string,
-      specialty: PropTypes.arrayOf(PropTypes.string)
+      specialty: PropTypes.arrayOf(PropTypes.string),
+      hits: PropTypes.number,
     }
   ))
 };
