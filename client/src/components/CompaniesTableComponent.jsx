@@ -20,9 +20,9 @@ export const CompaniesTableComponent = ({ companies }) => {
          id, picture, companyName, city, specialty,
         }) => (
           <tr key={id}>
-            <th scope="row">
-              <img src={picture} alt={companyName} />
-            </th>
+            <td>
+              <img src={picture} alt={companyName} className="rounded"/>
+            </td>
             <td>{companyName}</td>
             <td>{city}</td>
             <td>
