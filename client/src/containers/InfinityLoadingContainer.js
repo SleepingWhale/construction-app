@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import queryString from 'query-string';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import debounce from 'lodash.debounce';
 
 
 const controller = new AbortController();
@@ -34,7 +35,7 @@ export class InfinityLoadingContainer extends PureComponent {
     ) this.fetchData();
   }
 
-  fetchData = async (nextPage = 0) => {
+  fetchData = debounce(async (nextPage = 0) => {
     const { searchInput, selectedFilters, apiUrl } = this.props;
     const { data: currentData } = this.state;
     const queryParams = queryString.stringify({
@@ -72,7 +73,7 @@ export class InfinityLoadingContainer extends PureComponent {
     catch(err) {
       this.setState({error: err})
     }
-  };
+  }, 300, { 'maxWait': 600 });
 
   fetchMoreData = () => {
     const { page } = this.state;
