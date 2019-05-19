@@ -1,4 +1,4 @@
-const MAX_ITEMS_PER_PAGE = 200;
+const { MAX_ITEMS_PER_PAGE } = require('../common/constants');
 
 exports.getViewParamsFromQuery = function getViewParamsFromQuery(query) {
   const {

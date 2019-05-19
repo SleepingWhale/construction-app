@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 const { query, validationResult } = require('express-validator/check');
 const { getViewParamsFromQuery } = require('./helpers');
-const { getCompanies } = require('../data/dataHelpers');
+const { getCompanies } = require('../db/dbConnector');
+const { FILTERS_STUB } = require('../common/constants');
 
-const FILTERS_STUB = ["Excavation", "Plumbing", "Electrical"];
 const companiesQueryValidators = [
   query('search').optional().isString(),
   query('filters').optional().isArray(),
@@ -14,14 +14,14 @@ const companiesQueryValidators = [
 
 
 
-router.get('/', companiesQueryValidators, function(req, res) {
+router.get('/', companiesQueryValidators, async function(req, res) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.array() });
   }
 
   const viewParams = getViewParamsFromQuery(req.query);
-  const companies = getCompanies(viewParams);
+  const companies = await getCompanies(viewParams);
   res.json(companies);
 });
 
