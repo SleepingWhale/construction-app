@@ -39,7 +39,7 @@ const companies = [
 
 describe('CompaniesTableComponent', () => {
   it('should render correctly', () => {
-  const component = shallow(<CompaniesTableComponent companies={companies}/>);
+    const component = shallow(<CompaniesTableComponent companies={companies}/>);
     expect(component).toMatchSnapshot();
   });
 });
