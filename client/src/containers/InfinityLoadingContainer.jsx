@@ -5,8 +5,6 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import debounce from 'lodash.debounce';
 
 
-const controller = new AbortController();
-
 export class InfinityLoadingContainer extends PureComponent {
   static propTypes = {
     apiUrl: PropTypes.string.isRequired,
@@ -19,6 +17,8 @@ export class InfinityLoadingContainer extends PureComponent {
     searchInput: '',
     selectedFilters: [],
   };
+
+  abortController = new AbortController();
 
   state = {
     data: [],
@@ -34,7 +34,7 @@ export class InfinityLoadingContainer extends PureComponent {
   }
 
   componentWillUnmount() {
-    controller.abort();
+    this.abortController.abort();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -61,7 +61,7 @@ export class InfinityLoadingContainer extends PureComponent {
     try {
       const response = await fetch(
         `/${apiUrl}?${queryParams}`,
-        { signal: controller.signal },
+        { signal: this.abortController.signal },
       );
 
       if (response.ok) {
@@ -84,6 +84,7 @@ export class InfinityLoadingContainer extends PureComponent {
       }
     }
     catch(err) {
+      if (err.name === 'AbortError') return;
       this.setState({error: err})
     }
   }, 300, { 'maxWait': 600 });

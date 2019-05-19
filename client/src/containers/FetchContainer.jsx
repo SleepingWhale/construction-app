@@ -2,14 +2,13 @@ import { PureComponent } from 'react';
 import PropTypes from "prop-types";
 
 
-const controller = new AbortController();
-
-
 export class FetchContainer extends PureComponent {
   static propTypes = {
     url: PropTypes.string.isRequired,
     children: PropTypes.func.isRequired,
   };
+
+  abortController = new AbortController();
 
   state = {
     data: null,
@@ -28,19 +27,20 @@ export class FetchContainer extends PureComponent {
   }
 
   componentWillUnmount() {
-    controller.abort();
+    this.abortController.abort();
   }
 
   async fetchData() {
     const { url } = this.props;
 
     try {
-      const response = await fetch(url, { signal: controller.signal });
+      const response = await fetch(url, { signal: this.abortController.signal });
       if (response.ok) {
         const data = await response.json();
         this.setState({ data });
       }
     } catch(err) {
+      if (err.name === 'AbortError') return;
       this.setState({error: err})
     }
   }
