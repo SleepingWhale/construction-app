@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FiltersComponent should render correctly 1`] = `
+<Fragment>
+  <div
+    className="form-check form-check-inline"
+    key="a"
+  >
+    <span
+      className="badge badge-info p-2"
+    >
+      <input
+        className="form-check-input"
+        id="a"
+        name="a"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label
+        className="form-check-label"
+        htmlFor="a"
+      >
+        a
+      </label>
+    </span>
+  </div>
+  <div
+    className="form-check form-check-inline"
+    key="b"
+  >
+    <span
+      className="badge badge-info p-2"
+    >
+      <input
+        className="form-check-input"
+        id="b"
+        name="b"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label
+        className="form-check-label"
+        htmlFor="b"
+      >
+        b
+      </label>
+    </span>
+  </div>
+  <div
+    className="form-check form-check-inline"
+    key="c"
+  >
+    <span
+      className="badge badge-info p-2"
+    >
+      <input
+        className="form-check-input"
+        id="c"
+        name="c"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label
+        className="form-check-label"
+        htmlFor="c"
+      >
+        c
+      </label>
+    </span>
+  </div>
+</Fragment>
+`;
