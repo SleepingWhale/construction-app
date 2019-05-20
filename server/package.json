@@ -9,7 +9,8 @@
     "start:dev": "nodemon ./bin/www",
     "start:dev:withUI": "npm run start:dev & npm run start:ui:dev",
     "start:ui:dev": "cd ../client && npm run start",
-    "build:ui": "npm run rm && cd ../client && npm run build && cp -r ./build/*  ../server/public "
+    "build:ui": "npm run rm && cd ../client && npm run build && cp -r ./build/*  ../server/public ",
+    "test": "mocha **/*.test.js"
   },
   "dependencies": {
     "debug": "~2.6.9",
@@ -18,7 +19,10 @@
     "morgan": "~1.9.1"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
     "nodemon": "^1.19.0",
-    "rimraf": "^2.6.3"
+    "rimraf": "^2.6.3",
+    "supertest": "^4.0.2"
   }
 }

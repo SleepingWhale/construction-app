@@ -1,4 +1,4 @@
-const MAX_ITEMS_PER_PAGE = 200;
+const MAX_ITEMS_PER_PAGE = 50;
 const FILTERS_STUB = ["Excavation", "Plumbing", "Electrical"];
 
 module.exports = {
