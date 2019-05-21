@@ -9,13 +9,14 @@ const onChangeHandler = jest.fn();
 
 
 describe('FiltersComponent', () => {
-  const component = shallow(<FiltersComponent filters={filters} onChange={onChangeHandler}/>);
 
   it('should render correctly', () => {
+    const component = shallow(<FiltersComponent filters={filters} onChange={onChangeHandler}/>);
     expect(component).toMatchSnapshot();
   });
 
   it('should call onChangeHandler with proper arguments', () => {
+    const component = shallow(<FiltersComponent filters={filters} onChange={onChangeHandler}/>);
     const aCheck = component.find('#a');
     const bCheck = component.find('#b');
 
@@ -27,4 +28,5 @@ describe('FiltersComponent', () => {
     expect(onChangeHandler).toHaveBeenNthCalledWith(2,['a', 'b']);
     expect(onChangeHandler).toHaveBeenNthCalledWith(3,['b']);
   });
+
 });

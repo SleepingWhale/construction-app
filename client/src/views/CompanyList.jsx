@@ -49,7 +49,7 @@ export class CompanyList extends Component {
               maxLength={200}
             />
             <div className="input-group-append">
-              <button className="input-group-text rounded-0" onClick={this.clearInput}>X</button>
+              <button className="input-group-text rounded-0" onClick={this.clearInput}>&times;</button>
             </div>
           </div>
         </div>

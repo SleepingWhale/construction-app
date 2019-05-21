@@ -20,9 +20,10 @@ jest.spyOn(global, 'AbortController').mockImplementation((AbortController));
 
 
 describe('FetchContainer', () => {
-  const component = shallow(<FetchContainer url={url}>{children}</FetchContainer>);
 
-  it('fetches data from server and put to state', done => {
+  it('fetches data from server and put to state', (done) => {
+    const component = shallow(<FetchContainer url={url}>{children}</FetchContainer>);
+
     expect(global.fetch).toHaveBeenCalledTimes(1);
     expect(global.fetch).toHaveBeenCalledWith(url, { signal });
 
@@ -32,17 +33,29 @@ describe('FetchContainer', () => {
         error: null,
       });
 
-      global.fetch.mockClear();
       done();
     });
   });
 
-  it('passes data to children', () => {
-    expect(children).toHaveBeenCalledWith(mockSuccessResponse);
+  it('passes data to children', (done) => {
+    shallow(<FetchContainer url={url}>{children}</FetchContainer>);
+
+    process.nextTick(() => {
+      expect(children).toHaveBeenCalledWith(mockSuccessResponse);
+
+      done();
+    });
   });
 
-  it('cancel fetch on unmount', () => {
-    component.unmount();
-    expect(abort).toHaveBeenCalledTimes(1);
+  it('cancel fetch on unmount', (done) => {
+    const component = shallow(<FetchContainer url={url}>{children}</FetchContainer>);
+
+    process.nextTick(() => {
+      component.unmount();
+      expect(abort).toHaveBeenCalledTimes(1);
+
+      done();
+    });
   });
+
 });

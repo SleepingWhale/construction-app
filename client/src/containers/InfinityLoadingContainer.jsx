@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -99,17 +99,21 @@ export class InfinityLoadingContainer extends PureComponent {
     const { data, hits, hasMore, error } = this.state;
     const { children } = this.props;
 
-    if (error) return <div>{`Something went wrong. ${error}`}</div>;
 
     return (
-      <InfiniteScroll
-        dataLength={data.length}
-        next={this.fetchMoreData}
-        hasMore={hasMore}
-        loader={<div>Loading...</div>}
-      >
-        {children({ data, hits })}
-      </InfiniteScroll>
+      <Fragment>
+        <InfiniteScroll
+          dataLength={data.length}
+          next={this.fetchMoreData}
+          hasMore={hasMore}
+          loader={error ? null : (<div>Loading...</div>)}
+        >
+          {children({ data, hits })}
+        </InfiniteScroll>
+        {error && (<div className="alert alert-danger" role="alert">
+          {`Something went wrong. Can't load more data. ${error}`}
+        </div>)}
+      </Fragment>
     )
   }
 }
